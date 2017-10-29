@@ -30,7 +30,7 @@ The actual code of built project.
     * ```dist/backend/server.js``` - The entry point to the web app
   * ```dist/frontend``` - The built front-end code
     * ```dist/frontend/public``` - The bundled ```js``` files and other static resources. Web requests will only resolve if they point to this folder. 
-    * ```dist/frontend/styles``` - Folder for holding static css files, currently only having the minified bootstrap css. Similarly a ```dist/frontend/images``` could be created to hold image resources.
+    * ```dist/frontend/styles``` - Folder for holding css files. The external minified bootstrap css is copied here by ```copyStaticAssets.js```. Similarly a ```dist/frontend/images``` could be created to hold image resources.
     
 #### ```src/``` 
 The src code in ```.ts``` and ```.tsx```

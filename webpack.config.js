@@ -1,6 +1,7 @@
 const path = require("path");
 const MinifyPlugin = require("babel-minify-webpack-plugin");
 const webpack = require("webpack");
+const ExtractTextPlugin = require("extract-text-webpack-plugin");
 
 const env = JSON.stringify(process.env.NODE_ENV || "development");
 console.log("******** Target env is: " + env);
@@ -22,7 +23,8 @@ const plugins = [
     new webpack.optimize.CommonsChunkPlugin({
         name: "jqueryReact",
         minChunks: Infinity
-    })
+    }),
+    new ExtractTextPlugin("./styles/[name].css")    
 ];
 
 if (process.env.NODE_ENV === "production") {
@@ -43,7 +45,17 @@ module.exports = {
   },
   module: {
     rules: [
-      { test: /\.tsx?$/, loader: "ts-loader" }
+      { 
+        test: /\.tsx?$/, 
+        loader: "ts-loader" 
+      },
+      {
+        test: /\.css$/,
+        loader: ExtractTextPlugin.extract({
+          fallback: "style-loader",
+          use: "css-loader"
+        })
+      }
     ]
   },
   plugins: plugins
